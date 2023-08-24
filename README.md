@@ -18,9 +18,15 @@ Next we are going to make use of the cron service to retrieve the results of the
 
 Open the reports folder and inside there is a "report.json" file stored inside. By parsing the file and reading the contents, you can look for certain elements that are suspicious and relevant to malware files. For example, your Word documents and powerpoints make calls to an unknown IP address, or maybe certain virus signatures are found.
 
+![image](https://github.com/Cadenazar/CuckooMail/assets/88576308/3ceef878-919c-49eb-b534-eaaf8a8c0bb7)
+
+
 However, with the current virus_checker.py code, you are able to make use of virus total to delete malicious files. So firstly we need to download the file. Next, remember to modify all paths to fit the directory where the email_downloader.py stores all its jsons, the default should be your home directory. Remeber to change the VirusTotal api key to a valid one. I would be using the "/opt/virus_checker" directory to store the file. Next, open the "/etc/crontab" file and add the line 
 "*/1 * * * *     test    /usr/bin/python3.8 /opt/virus_checker/virus_checker.py  >> virus_checker.log"
-This would make the cron service run the virus_checker.py code every minute. You might need to change your python version, path, and user. Now you can test the code by sending an email to any emails in your domain, once Cuckoo sandbox and virus_total has finished analyzing the results, in a short moment you can look inside the virus_checker.log file, to see if the virus_total results were returned.
+This would make the cron service run the virus_checker.py code every minute. You might need to change your python version, path, and user. Now you can test the code by sending an email to any emails in your domain, once Cuckoo sandbox and virus_total has finished analyzing the results, in a short moment you can look inside the virus_checker.log file, to see if the virus_total results were returned. The flask server you are sending to will give an error however that will be fixed later.
+
+![image](https://github.com/Cadenazar/CuckooMail/assets/88576308/48c345dd-1cf4-4ff9-9a4a-82334922d409)
+
 
 
 
