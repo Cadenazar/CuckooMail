@@ -11,7 +11,7 @@ import pathlib
 
 #mail server host + credentials variables
 host = "mail server host eg. smtp.gmail.com (gmail mail server)"
-username = "username for master mail user eg. the mail cuckoo sandbox sends everything to"
+username = "username for master mail user eg. the mail cuckoo sandbox sends everything to, Cuckoo"
 password = "password for master mail user"
 
 #no need to change this variables
