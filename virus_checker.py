@@ -41,13 +41,13 @@ for file in file_json:
                 mal_file_json[file] = file_json[file]["content"]
             with open(f"/home/user/malicious_files_{folder}.json","w") as mal_files:  #change this file directory to your home directory, can be any directory but make sure to change the rest of the code
               json.dump(mal_file_json,mal_files)
-            url = "https://mail.nypcspj.dedyn.io:5000/submit"
+            url = "https://domain.com:5000/submit" #change this to your mail-server/ flask server domain
             form_data = {'file': open(f"/home/user/malicious_files_{folder}.json","r")}  #change this file directory to your home directory, can be any directory but make sure to change the rest of the code
-            auth_headers =  {'api-key':'ee031317f57c2d729af2ce3ed0bf0591c8364e8e010b5f8b82dd8f2734bec6af'}
+            auth_headers =  {'api-key':'flask api key'} # change to the one you use later on in the project
             server = requests.post(url, files=form_data,headers=auth_headers)
             print("\n\n",server.text)
             if "File submitted sucessfully" not in server.text:
-              url = "https://backup.nypcspj.dedyn.io:5000/submit"
+              url = "https://backup-domain.com:5000/submit" #change this to your mail-server/ flask server domain
               form_data = {'file': open(f"/home/user/malicious_files_{folder}.json","r")} #change this file directory to your home directory, can be any directory but make sure to change the rest of the code
               server = requests.post(url, files=form_data)
 
