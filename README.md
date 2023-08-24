@@ -9,6 +9,7 @@ Next, we need to configure your Cuckoo sandbox VM to constantly download all ema
 
 We are going to make use of the cron service to run the email downloader script every 1 minute. So open the "/etc/crontab" file, and put in the line 
 "*/1 * * * *     user    /usr/bin/python3.8 /opt/cuckoo/email_downloader.py >> email_downloader.log" this command will run the email_downloader script every minute and write all print outputs to the email_downloader.log file.You might need to change your python version, path, and user. You can now test the script by sending an email containing an attachment to any of your email addresses in your domain, after waiting for around a minute, Cuckoo sandbox should start running and analyzing the file. Remember to start your Cuckoo sandbox before testing the script. Also, remember to enable send file to virustotal to analyse inside the cuckoo sandbox config. You can do this by opening the ".Cuckoo/conf/processing.conf" file. Enable VirusTotal by setting the enabled field to yes and Scan field to yes. This will send all analyzed files to virustotal for further analysis.
+
 ![image](https://github.com/Cadenazar/CuckooMail/assets/88576308/21af695c-0283-41ec-8694-6377130d41e3)
 
 
