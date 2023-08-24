@@ -9,7 +9,7 @@ date_day = today.strftime("%d")
 folder = date_year+"-"+date_mo+"-"+date_day
 
 try:
-  with open(f"/home/user/sandbox_checker/malicious_{folder}.json","rb") as file: #change to directory you are using for app.py
+  with open(f"/home/user/flask_directory/malicious_{folder}.json","rb") as file: #change to directory you are using for app.py, flask directory
     mal_file_dict = json.load(file)
 except FileNotFoundError:
     pass
