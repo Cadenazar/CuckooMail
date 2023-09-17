@@ -8,6 +8,7 @@ import pathlib
 import time
 import hashlib
 import pathlib
+import subprocess
 
 #mail server host + credentials variables
 host = "mail server host eg. smtp.gmail.com (gmail mail server)"
@@ -52,7 +53,7 @@ for (uid, message) in messages:
                     fp.write(file_content)
                     cmd = "/usr/local/bin/cuckoo submit" + " " + download_path #change to cuckoo file path
                     #print(cmd)
-                    os.system(cmd)
+                    subprocess.call(cmd,shell=True)
                     file_content_string = (base64.b64encode(file_content)).decode("ascii")
                     import json
                     stored_json = {}
