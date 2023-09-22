@@ -53,7 +53,9 @@ for (uid, message) in messages:
                     fp.write(file_content)
                     cmd = "/usr/local/bin/cuckoo submit" + " " + download_path #change to cuckoo file path
                     #print(cmd)
-                    subprocess.call(cmd,shell=True)
+                    cuckoo_output = subprocess.call(cmd,shell=True,capture_output=True, text=True)
+                    cuckoo_output_lst = Cuckoo_output.split("#")
+                    id = cuckoo_output_lst[1]
                     file_content_string = (base64.b64encode(file_content)).decode("ascii")
                     import json
                     stored_json = {}
@@ -63,7 +65,7 @@ for (uid, message) in messages:
                     except:
                       pass
                     finally:
-                     stored_json[file_hash+file_extension] = {"content":file_content_string,"checked":False}
+                     stored_json[file_hash+file_extension] = {"content":file_content_string,"checked":False,"id":id}
                      with open(f'filename_to_content_{folder}.json','w') as outfile:
                         json.dump(stored_json,outfile)
         except:
