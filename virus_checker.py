@@ -11,6 +11,17 @@ wait_list = []
 def cuckoo_sandbox_checker(analysis_id):
    with open(f".cuckoo/storage/analyses/{analysis_id}/reports/report.json","r") as report:
      report_json = json.load(report)
+     for connection_type in ["http","icmp","tcp","mitm","smtp_ex","dns_servers","udp","tls"]:
+      for connection in report_json["network"][connection_type]:
+       dst_add = connection["dst"]
+       known_ip_lst = ["224.0.0","239.255.255"]
+       valid_add = False
+       for ip in known_ip_lst:
+         if ip in dst_add or dst_add.split(".")[-1] == "255":
+           valid_add = True
+           break
+       if valid_add == False:
+         return(False) #Fail test if external network connection is done
      #do whatever checks you want here
    result = True #change your malware detection criteria here
    return(result)
